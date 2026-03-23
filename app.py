@@ -47,3 +47,9 @@ if st.button("Load Feed"):
             st.error(f"Error loading feed: {e}")
     else:
         st.warning("Please enter a valid RSS URL.")
+                st.divider()
+
+        except Exception as e:
+            st.error(f"Error loading feed: {e}")
+    else:
+        st.warning("Please enter a valid RSS URL.")
