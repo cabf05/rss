@@ -2,6 +2,8 @@ import streamlit as st
 import feedparser
 import requests
 
+st.set_page_config(page_title="RSS Reader", layout="wide")
+
 st.title("📡 RSS Feed Reader")
 
 rss_url = st.text_input("Enter RSS feed URL:")
@@ -19,7 +21,7 @@ if st.button("Load Feed"):
             feed = feedparser.parse(response.content)
 
             if feed.bozo:
-                st.error("RSS parsed with errors (format may be non-standard).")
+                st.warning("RSS parsed with some issues (non-standard format).")
 
             st.success(f"Feed loaded: {feed.feed.get('title', 'No title')}")
 
@@ -35,18 +37,6 @@ if st.button("Load Feed"):
                 if "link" in entry:
                     st.markdown(f"[Read more]({entry.link})")
 
-                st.divider()
-
-        except Exception as e:
-            st.error(f"Error loading feed: {e}")
-    else:
-        st.warning("Please enter a valid RSS URL.")
-                st.divider()
-
-        except Exception as e:
-            st.error(f"Error loading feed: {e}")
-    else:
-        st.warning("Please enter a valid RSS URL.")
                 st.divider()
 
         except Exception as e:
